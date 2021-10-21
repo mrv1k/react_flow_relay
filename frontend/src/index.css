@@ -54,3 +54,26 @@ object {
   display: block;
   vertical-align: middle;
 }
+
+/* custom css */
+#root {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.wip {
+  display: flex;
+  align-items: center;
+}
+
+.wip .mock-image {
+  max-width: 50%;
+}
+
+.wip label {
+  display: block;
+}
+
+.wip input {
+  margin-right: 1rem;
+}

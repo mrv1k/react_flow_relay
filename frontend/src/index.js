@@ -3,9 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import DevProgress from './components/DevProgress'
 
 const Root = () => (
   <React.StrictMode>
+    {process.env.NODE_ENV && <DevProgress />}
     <App />
   </React.StrictMode>
 );

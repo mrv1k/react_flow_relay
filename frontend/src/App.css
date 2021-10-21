@@ -1,21 +1,9 @@
-.App {
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
-.wip {
+.skills-wrapper {
   display: flex;
-  align-items: center;
+  width: 50%;
 }
 
-.wip .mock-image {
-  max-width: 50%;
-}
-
-.wip label {
-  display: block;
-}
-
-.wip input {
-  margin-right: 1rem;
+.frontend,
+.backend {
+  flex: 1 1 auto;
 }

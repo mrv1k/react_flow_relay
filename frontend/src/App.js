@@ -1,70 +1,77 @@
-import { useEffect } from "react";
+import graphql from "babel-plugin-relay/macro";
+import { Suspense } from "react";
+import {
+  loadQuery, RelayEnvironmentProvider, usePreloadedQuery
+} from "react-relay/hooks";
 import "./App.css";
-import mockImage from "./assets/mock.png";
-import fetchGraphQL from "./relay/fetchGraphQL";
+import RelayEnvironment from "./relay/RelayEnvironment";
 
-function App() {
-  useEffect(() => {
-    fetchGraphQL(`#graphql
-      query {
-        frontEnd {
-          id
-          name
-          skills {
-            edges {
-              node {
-                id
-                name
-              }
-            }
+const FrontEndSkillsQuery = graphql`
+  query AppFrontEndSkillsQuery {
+    frontEnd {
+      id
+      name
+      skills {
+        edges {
+          node {
+            id
+            name
           }
         }
       }
-    `)
-      .then((result) => {
-        console.log(result);
-      });
-  }, [])
+    }
+  }
+`;
+
+const BackEndSkillsQuery = graphql`
+  query AppBackEndSkillsQuery {
+    backEnd {
+      id
+      name
+      skills {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
+const frontEndPreloadedQuery = loadQuery(RelayEnvironment, FrontEndSkillsQuery);
+const backEndPreloadedQuery = loadQuery(RelayEnvironment, BackEndSkillsQuery);
+
+function App({ frontEndPreloadedQuery, backEndPreloadedQuery }) {
+  const frontEndQuery = usePreloadedQuery(FrontEndSkillsQuery, frontEndPreloadedQuery);
+  const frontEndSkills = frontEndQuery.frontEnd.skills.edges;
+
+  const backEndQuery = usePreloadedQuery(BackEndSkillsQuery, backEndPreloadedQuery);
+  const backEndSkills = backEndQuery.backEnd.skills.edges;
 
   return (
     <div className="App">
-      <div className="wip">
-        <img src={mockImage} alt="mock" className="mock-image" />
-        <span>
-          <label htmlFor="two-skills">
-            <input type="checkbox" id="two-skills" name="two-skills" />
-            See two lists of skills
-          </label>
+      <header>
+        <h1>Knowledge base</h1>
+      </header>
 
-          <label htmlFor="new-skill">
-            <input type="checkbox" id="new-skill" name="new-skill" />
-            Can add new skills
-          </label>
-
-          <label htmlFor="modal-dialog">
-            <input type="checkbox" id="modal-dialog" name="modal-dialog" />
-            New skill displayed in modal dialog
-          </label>
-        </span>
-      </div>
-
-      <header>Knowledge base</header>
-
-      <div style={{ display: 'flex' }}>
-        <div>
-          Frontend
-          <ul>
-            <li>js</li>
-            <li>html</li>
-            <li>css</li>
+      <div className="skills-wrapper">
+        <div className="frontend">
+          <h2>{frontEndQuery.frontEnd.name}</h2>
+          <ul className="skills">
+            {frontEndSkills.map((skill) => (
+              <li key={skill.node.id}>{skill.node.name}</li>
+            ))}
           </ul>
         </div>
-        <div>
-          Backend
-          <ul>
-            <li>node.js</li>
-            <li>hack</li>
-            <li>rust</li>
+
+        <div className="backend">
+          <h2>{backEndQuery.backEnd.name}</h2>
+          <ul className="skills">
+            {backEndSkills.map((skill) => (
+              <li key={skill.node.id}>{skill.node.name}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -72,4 +79,17 @@ function App() {
   );
 }
 
-export default App;
+function AppRoot() {
+  return (
+    <RelayEnvironmentProvider environment={RelayEnvironment}>
+      <Suspense fallback='Loading...'>
+        <App
+          frontEndPreloadedQuery={frontEndPreloadedQuery}
+          backEndPreloadedQuery={backEndPreloadedQuery}
+        />
+      </Suspense>
+    </RelayEnvironmentProvider>
+  )
+}
+
+export default AppRoot;
