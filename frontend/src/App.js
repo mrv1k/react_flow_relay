@@ -5,23 +5,7 @@ import {
 } from "react-relay/hooks";
 import "./App.css";
 import RelayEnvironment from "./relay/RelayEnvironment";
-
-const FrontEndSkillsQuery = graphql`
-  query AppFrontEndSkillsQuery {
-    frontEnd {
-      id
-      name
-      skills {
-        edges {
-          node {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+import FrontEndSkillsList from './components/FrontEndSkillsList'
 
 const BackEndSkillsQuery = graphql`
   query AppBackEndSkillsQuery {
@@ -40,12 +24,9 @@ const BackEndSkillsQuery = graphql`
   }
 `;
 
-const frontEndPreloadedQuery = loadQuery(RelayEnvironment, FrontEndSkillsQuery);
 const backEndPreloadedQuery = loadQuery(RelayEnvironment, BackEndSkillsQuery);
 
-function App({ frontEndPreloadedQuery, backEndPreloadedQuery }) {
-  const frontEndQuery = usePreloadedQuery(FrontEndSkillsQuery, frontEndPreloadedQuery);
-  const frontEndSkills = frontEndQuery.frontEnd.skills.edges;
+function App({ backEndPreloadedQuery }) {
 
   const backEndQuery = usePreloadedQuery(BackEndSkillsQuery, backEndPreloadedQuery);
   const backEndSkills = backEndQuery.backEnd.skills.edges;
@@ -57,14 +38,7 @@ function App({ frontEndPreloadedQuery, backEndPreloadedQuery }) {
       </header>
 
       <div className="skills-wrapper">
-        <div className="frontend">
-          <h2>{frontEndQuery.frontEnd.name}</h2>
-          <ul className="skills">
-            {frontEndSkills.map((skill) => (
-              <li key={skill.node.id}>{skill.node.name}</li>
-            ))}
-          </ul>
-        </div>
+        <FrontEndSkillsList />
 
         <div className="backend">
           <h2>{backEndQuery.backEnd.name}</h2>
@@ -83,10 +57,7 @@ function AppRoot() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
       <Suspense fallback='Loading...'>
-        <App
-          frontEndPreloadedQuery={frontEndPreloadedQuery}
-          backEndPreloadedQuery={backEndPreloadedQuery}
-        />
+        <App backEndPreloadedQuery={backEndPreloadedQuery} />
       </Suspense>
     </RelayEnvironmentProvider>
   )
