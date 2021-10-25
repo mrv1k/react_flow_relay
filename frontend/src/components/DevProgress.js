@@ -18,6 +18,11 @@ const DevProgress = () => (
         <input type="checkbox" id="modal-dialog" name="modal-dialog" />
         New skill displayed in modal dialog
       </label>
+
+      <label>
+        <input type="checkbox" name="flow-types" />
+        Flow typed
+      </label>
     </span>
   </div>
 );
