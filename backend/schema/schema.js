@@ -56,7 +56,10 @@ const areaType = new GraphQLObjectType({
   name: "Area",
   interfaces: [nodeInterface],
   fields: () => ({
-    id: globalIdField(),
+    // id: globalIdField(),
+    id: {
+      type: new GraphQLNonNull(GraphQLID),
+    },
     name: {
       type: GraphQLString,
     },
@@ -107,7 +110,7 @@ const skillMutation = mutationWithClientMutationId({
   mutateAndGetPayload: ({ skillName, areaId }) => {
     const newSkill = createSkill(skillName, areaId);
     return {
-      sillId: newSkill.id,
+      skillId: newSkill.id,
       areaId,
     };
   },
