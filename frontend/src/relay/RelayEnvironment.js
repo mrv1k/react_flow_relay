@@ -1,4 +1,4 @@
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import {Environment, Network, RecordSource, Store} from 'relay-runtime';
 import fetchGraphQL from './fetchGraphQL';
 
 // Pass Relay "params" and (optional) variables to helper function

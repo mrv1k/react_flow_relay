@@ -1,9 +1,9 @@
-import { Suspense } from "react";
-import { RelayEnvironmentProvider } from "react-relay/hooks";
-import "./App.css";
+import {Suspense} from 'react';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import './App.css';
 import FrontEndSkillsList from './components/FrontEndSkillsList';
 import BackEndSkillsList from './components/BackEndSkillsList';
-import RelayEnvironment from "./relay/RelayEnvironment";
+import RelayEnvironment from './relay/RelayEnvironment';
 
 function App() {
   return (
@@ -23,11 +23,11 @@ function App() {
 function AppRoot() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <Suspense fallback='Loading...'>
+      <Suspense fallback="Loading...">
         <App />
       </Suspense>
     </RelayEnvironmentProvider>
-  )
+  );
 }
 
 export default AppRoot;

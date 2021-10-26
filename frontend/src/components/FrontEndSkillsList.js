@@ -1,8 +1,6 @@
-import graphql from "babel-plugin-relay/macro";
-import {
-  loadQuery, usePreloadedQuery
-} from "react-relay/hooks";
-import RelayEnvironment from "../relay/RelayEnvironment";
+import graphql from 'babel-plugin-relay/macro';
+import {loadQuery, usePreloadedQuery} from 'react-relay/hooks';
+import RelayEnvironment from '../relay/RelayEnvironment';
 import SkillsList from './SkillsList';
 
 const gqlQuery = graphql`
@@ -25,7 +23,7 @@ const gqlQuery = graphql`
 const preloadedQuery = loadQuery(RelayEnvironment, gqlQuery);
 
 function FrontEndSkillsList() {
-  const { frontEnd } = usePreloadedQuery(gqlQuery, preloadedQuery);
+  const {frontEnd} = usePreloadedQuery(gqlQuery, preloadedQuery);
 
   return <SkillsList name={frontEnd.name} skills={frontEnd.skills.edges} />;
 }

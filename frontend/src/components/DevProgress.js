@@ -1,4 +1,4 @@
-import mockImage from "../assets/mock.png";
+import mockImage from '../assets/mock.png';
 
 const DevProgress = () => (
   <div className="wip">
@@ -21,7 +21,7 @@ const DevProgress = () => (
 
       <label>
         <input type="checkbox" name="flow-types" />
-        Flow typed
+        Add types using Flow
       </label>
     </span>
   </div>
