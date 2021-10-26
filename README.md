@@ -1,5 +1,9 @@
 # Relay learning notes
 
+## Helpful resources
++ [Introducing Relay and GraphQL](https://reactjs.org/blog/2015/02/20/introducing-relay-and-graphql.html)
++ [Relay for Visual Learners](http://sgwilym.github.io/relay-visual-learners/)
+
 ## Disclaimer:
 This a personal paper notes transcript and likely won't make any sense.
 If you still want to go ahead, here's some info to help you make sense of it:
@@ -8,9 +12,12 @@ If you still want to go ahead, here's some info to help you make sense of it:
 
 ---
 
++ Relay - the next evolution of Flux pattern
 + Relay couples React with GraphQL
 + What are the benefits?
-  + Allows to use localized data in component
+  + Allows query collocation
+  + Simplifies GraphQL interactions
+    + e.g.: Simplifies pagination by automatically handling cursor for you
 + Why does it exist?
   + GraphQL with React doesn't scale well
 
@@ -44,7 +51,9 @@ prefix: a beautifully written piece of documentation, pleasure to read
 ## [GraphQL Clients](https://graphql.org/graphql-js/graphql-clients/)
 
 + Relay is a GraphQL Client
-+ so is GraphQL Apollo
+  + structured and opinionated
++ GraphQL Apollo is a GraphQL Client
+  + flexible and community driver
 + [Why you might want a GraphQL client](https://www.apollographql.com/blog/frontend/why-you-might-want-a-graphql-client-e864050f789c/)?
   1. Easier GraphQL query execution
       + transport specific features like HTTP `headers`
