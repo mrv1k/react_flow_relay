@@ -22,7 +22,8 @@
     "test": "npm run relay && react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "relay": "relay-compiler --schema ./schema.graphql --src ./src"
+    "relay": "relay-compiler --schema ./schema.graphql --src ./src",
+    "relay:watch": "npm run relay -- --watch"
   },
   "eslintConfig": {
     "extends": [

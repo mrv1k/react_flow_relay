@@ -53,7 +53,7 @@ prefix: a beautifully written piece of documentation, pleasure to read
 + Relay is a GraphQL Client
   + structured and opinionated
 + GraphQL Apollo is a GraphQL Client
-  + flexible and community driver
+  + flexible and community driven
 + [Why you might want a GraphQL client](https://www.apollographql.com/blog/frontend/why-you-might-want-a-graphql-client-e864050f789c/)?
   1. Easier GraphQL query execution
       + transport specific features like HTTP `headers`
