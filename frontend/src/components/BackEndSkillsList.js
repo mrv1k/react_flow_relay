@@ -6,7 +6,6 @@ import SkillsList from './SkillsList';
 const gqlQuery = graphql`
   query BackEndSkillsListQuery {
     backEnd {
-      id
       name
       skills {
         edges {

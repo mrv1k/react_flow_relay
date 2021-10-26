@@ -2,9 +2,9 @@
 
 function SkillsList({name, skills}) {
   return (
-    <div className="frontend">
+    <div className="skills" onClick={() => console.log('TODO: Popup a modal')}>
       <h2>{name}</h2>
-      <ul className="skills">
+      <ul>
         {skills.map(skill => (
           <li key={skill.node.id}>{skill.node.name}</li>
         ))}

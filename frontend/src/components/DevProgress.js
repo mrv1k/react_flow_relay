@@ -5,7 +5,7 @@ const DevProgress = () => (
     <img src={mockImage} alt="mock" className="mock-image" />
     <span>
       <label htmlFor="two-skills">
-        <input type="checkbox" id="two-skills" name="two-skills" checked />
+        <input type="checkbox" id="two-skills" name="two-skills" checked readOnly />
         See two lists of skills
       </label>
 
