@@ -10,12 +10,12 @@ const DevProgress = () => (
       </label>
 
       <label htmlFor="new-skill">
-        <input type="checkbox" id="new-skill" name="new-skill" />
+        <input type="checkbox" id="new-skill" name="new-skill" checked readOnly />
         Can add new skills
       </label>
 
       <label htmlFor="modal-dialog">
-        <input type="checkbox" id="modal-dialog" name="modal-dialog" />
+        <input type="checkbox" id="modal-dialog" name="modal-dialog" checked readOnly />
         New skill displayed in modal dialog
       </label>
 

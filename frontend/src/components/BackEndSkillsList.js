@@ -22,10 +22,17 @@ const gqlQuery = graphql`
 
 const preloadedQuery = loadQuery(RelayEnvironment, gqlQuery);
 
-function BackEndSkillsList() {
+// eslint-disable-next-line react/prop-types
+function BackEndSkillsList({openModal}) {
   const {backEnd} = usePreloadedQuery(gqlQuery, preloadedQuery);
 
-  return <SkillsList name={backEnd.name} skills={backEnd.skills.edges} />;
+  return (
+    <SkillsList
+      name={backEnd.name}
+      skills={backEnd.skills.edges}
+      openModal={() => openModal(backEnd.id, backEnd.name)}
+    />
+  );
 }
 
 export default BackEndSkillsList;

@@ -1,11 +1,25 @@
-import {Suspense} from 'react';
+import {Suspense, useState} from 'react';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import AddNewSkill from './components/AddNewSkill';
 import './App.css';
-import FrontEndSkillsList from './components/FrontEndSkillsList';
 import BackEndSkillsList from './components/BackEndSkillsList';
+import FrontEndSkillsList from './components/FrontEndSkillsList';
+import Modal from './components/Modal';
 import RelayEnvironment from './relay/RelayEnvironment';
 
 function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalAreaId, setModalAreaId] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
+
+  const openModal = (areaId, title) => {
+    setModalAreaId(areaId);
+    setModalTitle(title);
+    setModalIsVisible(true);
+  };
+
+  const closeModal = () => setModalIsVisible(false);
+
   return (
     <div className="App">
       <header>
@@ -13,9 +27,16 @@ function App() {
       </header>
 
       <div className="skills-wrapper">
-        <FrontEndSkillsList />
-        <BackEndSkillsList />
+        <FrontEndSkillsList openModal={openModal} />
+        <BackEndSkillsList openModal={openModal}/>
       </div>
+
+      {modalIsVisible
+        && (
+          <Modal title={`Add to ${modalTitle}`} closeModal={closeModal}>
+            <AddNewSkill areaId={modalAreaId} closeModal={closeModal} />
+          </Modal>
+        )}
     </div>
   );
 }
