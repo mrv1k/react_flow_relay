@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
-function SkillsList({name, skills}) {
+function SkillsList({name, skills, openModal}) {
   return (
-    <div className="skills" onClick={() => console.log('TODO: Popup a modal')}>
+    <div className="skills" onClick={openModal}>
       <h2>{name}</h2>
       <ul>
         {skills.map(skill => (

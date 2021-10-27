@@ -12,36 +12,43 @@ const gqlMutation = graphql`
   }
 `;
 
-function AddNewSkill() {
-  const [skill, setSkill] = useState('test');
+// eslint-disable-next-line react/prop-types
+function AddNewSkill({areaId, closeModal}) {
+  const [skill, setSkill] = useState('');
   const [commit, isInFlight] = useMutation(gqlMutation);
 
   const submit = e => {
+    console.log('fired');
     e.preventDefault();
-    console.log('submit', skill);
+
     commit({
       variables: {
         skillName: skill,
-        areaId: 1,
+        areaId,
       },
       onCompleted(data) {
-        console.log(data);
+        // FIX: isInFlight flicker
+        // TODO: update list
+        console.log('committed', data);
+        setSkill('');
+        // closeModal();
       },
     });
   };
 
   if (isInFlight) {
-    return <div>Mutating...</div>;
+    return <div>Persisting...</div>;
   }
 
   return (
     <form onSubmit={submit}>
       <input
-        style={{border: '1px solid gray', width: '80%'}}
+        placeholder="Skill"
         value={skill}
         onChange={e => setSkill(e.target.value)}
       />
-      <button onClick={submit}>button</button>
+      <button type="button" className="cancel" onClick={closeModal}>Cancel</button>
+      <button type="button" className="add" onClick={submit}>Add</button>
     </form>
   );
 }
