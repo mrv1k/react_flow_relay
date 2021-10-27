@@ -1,9 +1,10 @@
 import {useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
+import './Modal.css';
 
 const modalRoot = document.getElementById('modal');
 
-function Modal({children}) {
+function Modal({children, title, closeModal}) {
   const elRef = useRef(null);
   if (!elRef.current) {
     elRef.current = document.createElement('div');
@@ -14,7 +15,19 @@ function Modal({children}) {
     return () => modalRoot.removeChild(elRef.current);
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  const Element = (
+    <div className="wrapper">
+      <div className="header">
+        <span className="title">{title}</span>
+        <button className="close" onClick={closeModal}>X</button>
+      </div>
+      <div className="content">
+        {children}
+      </div>
+    </div>
+  );
+
+  return createPortal(Element, elRef.current);
 }
 
 export default Modal;
