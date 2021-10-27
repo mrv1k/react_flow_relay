@@ -61,3 +61,25 @@ prefix: a beautifully written piece of documentation, pleasure to read
       + additional features like "subscriptions"
   2. Keep all UI components and queries in sync with each other
   3. Flexible caching
+
+## [HowToGraphQL.com](https://www.howtographql.com/)
+
++ Introduction
+  + REST was a good approach for its time
+  + Modern development era came with new challenges
+    1. Increased mobile usage
+    2. Variety of Frontend frameworks (and clients)
+    3. Faster development cycle with CI
++ GraphQL is the better REST
+  + In REST you're working with no types and rigid data
+  + In GraphQL you're working with strict types and flexible data
++ Core Concepts
+  + Root Types:
+    + Queries: Read
+    + Mutations: Create Update Delete
+    + Subscriptions: Real time updates
+  + a field on root type is called... root field!
++ Big Picture (Architecture)
+  + GraphQL Flexibility comes from `resolver` functions
+  + Each root field corresponds to exactly 1 resolver function
+
