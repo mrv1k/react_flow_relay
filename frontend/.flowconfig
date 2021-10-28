@@ -5,7 +5,13 @@
 [libs]
 
 [lints]
+all=warn
 
 [options]
+react.runtime=automatic
 
 [strict]
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import
