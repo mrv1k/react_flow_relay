@@ -4,9 +4,17 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
+    'eslint:recommended',
+    'react-app',
+    'react-app/jest',
     'xo-space',
-    'plugin:react/jsx-runtime',
+    'plugin:relay/recommended',
+    'plugin:flowtype/recommended',
+  ],
+  plugins: [
+    'react',
+    'relay',
+    'flowtype',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -15,19 +23,14 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'relay',
-  ],
-  settings: {
-    react: {
-      version: 'detect',
-      // X flowVersion: "0.53" // Flow version
-
-    },
-  },
   rules: {
     'no-unused-vars': 'warn',
     'capitalized-comments': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+      flowVersion: '0.162',
+    },
   },
 };
