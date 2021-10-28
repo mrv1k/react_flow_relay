@@ -1,17 +1,24 @@
 // @flow
 
-import React from 'react';
+import {StrictMode, Suspense} from 'react';
 import ReactDOM from 'react-dom';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import App from './App';
 import DevProgress from './components/DevProgress';
 import './index.css';
+import MyAppEnvironment from './relay/RelayEnvironment';
 import reportWebVitals from './reportWebVitals';
 
 const Root = () => (
-  <React.StrictMode>
+  <StrictMode>
     {process.env.NODE_ENV && <DevProgress />}
-    <App />
-  </React.StrictMode>
+
+    <RelayEnvironmentProvider environment={MyAppEnvironment}>
+      <Suspense fallback="Loading...">
+        <App />
+      </Suspense>
+    </RelayEnvironmentProvider>
+  </StrictMode>
 );
 
 ReactDOM.render(<Root />, document.getElementById('root'));
