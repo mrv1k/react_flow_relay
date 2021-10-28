@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+// @flow
 
 function SkillsList({name, skills, openModal}) {
   return (

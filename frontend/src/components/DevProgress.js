@@ -1,3 +1,5 @@
+// @flow
+
 import mockImage from '../assets/mock.png';
 
 const DevProgress = () => (

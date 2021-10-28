@@ -1,3 +1,5 @@
+// @flow
+
 import {useState} from 'react';
 import graphql from 'babel-plugin-relay/macro';
 import {useMutation} from 'react-relay/hooks';
@@ -12,7 +14,6 @@ const gqlMutation = graphql`
   }
 `;
 
-// eslint-disable-next-line react/prop-types
 function AddNewSkill({areaId, closeModal}) {
   const [skill, setSkill] = useState('');
   const [commit, isInFlight] = useMutation(gqlMutation);

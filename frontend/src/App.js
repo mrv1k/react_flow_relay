@@ -1,4 +1,6 @@
-import {Suspense, useState} from 'react';
+// @flow
+
+import {Suspense, useEffect, useState} from 'react';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import AddNewSkill from './components/AddNewSkill';
 import './App.css';
@@ -28,7 +30,7 @@ function App() {
 
       <div className="skills-wrapper">
         <FrontEndSkillsList openModal={openModal} />
-        <BackEndSkillsList openModal={openModal}/>
+        <BackEndSkillsList openModal={openModal} />
       </div>
 
       {modalIsVisible
