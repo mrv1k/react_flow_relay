@@ -1,12 +1,13 @@
 // @flow
 
+import type {Node} from 'react';
 import {useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
 import './Modal.css';
 
 const modalRoot = document.getElementById('modal');
 
-function Modal({children, title, closeModal}) {
+function Modal({children, title, closeModal}): Node {
   const elRef = useRef(null);
   if (!elRef.current) {
     elRef.current = document.createElement('div');

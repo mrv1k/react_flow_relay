@@ -1,5 +1,6 @@
 // @flow strict
 
+import type {Node} from 'react';
 import {useState} from 'react';
 import './App.css';
 import AddNewSkill from './components/AddNewSkill';
@@ -7,7 +8,7 @@ import BackEndSkillsList from './components/BackEndSkillsList';
 import FrontEndSkillsList from './components/FrontEndSkillsList';
 import Modal from './components/Modal';
 
-function App() {
+function App(): Node {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [modalAreaId, setModalAreaId] = useState(null);
   const [modalTitle, setModalTitle] = useState(null);

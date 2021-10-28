@@ -1,6 +1,8 @@
 // @flow
 
-function SkillsList({name, skills, openModal}) {
+import type {Node} from 'react';
+
+function SkillsList({name, skills, openModal}): Node {
   return (
     <div className="skills" onClick={openModal}>
       <h2>{name}</h2>

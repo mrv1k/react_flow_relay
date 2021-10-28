@@ -1,7 +1,8 @@
 // @flow
 
-import {useState} from 'react';
 import graphql from 'babel-plugin-relay/macro';
+import type {Node} from 'react';
+import {useState} from 'react';
 import {useMutation} from 'react-relay/hooks';
 
 const gqlMutation = graphql`
@@ -14,7 +15,7 @@ const gqlMutation = graphql`
   }
 `;
 
-function AddNewSkill({areaId, closeModal}) {
+function AddNewSkill({areaId, closeModal}): Node {
   const [skill, setSkill] = useState('');
   const [commit, isInFlight] = useMutation(gqlMutation);
 

@@ -1,6 +1,7 @@
 // @flow
 
 import graphql from 'babel-plugin-relay/macro';
+import type {Node} from 'react';
 import {loadQuery, usePreloadedQuery} from 'react-relay/hooks';
 import MyAppEnvironment from '../relay/RelayEnvironment';
 import SkillsList from './SkillsList';
@@ -24,7 +25,7 @@ const gqlQuery = graphql`
 
 const preloadedQuery = loadQuery(MyAppEnvironment, gqlQuery);
 
-function BackEndSkillsList({openModal}) {
+function BackEndSkillsList({openModal}): Node {
   const {backEnd} = usePreloadedQuery(gqlQuery, preloadedQuery);
 
   return (
