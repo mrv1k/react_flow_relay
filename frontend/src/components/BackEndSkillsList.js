@@ -5,6 +5,7 @@ import type {Node} from 'react';
 import {loadQuery, usePreloadedQuery} from 'react-relay/hooks';
 import MyAppEnvironment from '../relay/RelayEnvironment';
 import SkillsList from './SkillsList';
+import type {OpenModalFn} from '../App';
 
 const gqlQuery = graphql`
   query BackEndSkillsListQuery {
@@ -23,9 +24,13 @@ const gqlQuery = graphql`
   }
 `;
 
-const preloadedQuery = loadQuery(MyAppEnvironment, gqlQuery);
+const preloadedQuery = loadQuery(MyAppEnvironment, gqlQuery, {});
 
-function BackEndSkillsList({openModal}): Node {
+type Props = {
+  openModal: OpenModalFn,
+}
+
+function BackEndSkillsList({openModal}: Props): Node {
   const {backEnd} = usePreloadedQuery(gqlQuery, preloadedQuery);
 
   return (

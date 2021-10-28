@@ -8,12 +8,15 @@ import BackEndSkillsList from './components/BackEndSkillsList';
 import FrontEndSkillsList from './components/FrontEndSkillsList';
 import Modal from './components/Modal';
 
+export type OpenModalFn = (areaId: number, title: string) => void
+// CloseModal is too simple to warrant a type
+
 function App(): Node {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [modalAreaId, setModalAreaId] = useState(null);
   const [modalTitle, setModalTitle] = useState(null);
 
-  const openModal = (areaId: number, title: string) => {
+  const openModal: OpenModalFn = (areaId: number, title: string) => {
     setModalAreaId(areaId);
     setModalTitle(title);
     setModalIsVisible(true);

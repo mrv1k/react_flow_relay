@@ -1,8 +1,15 @@
 // @flow
 
+import type {OpenModalFn} from '../App';
 import type {Node} from 'react';
 
-function SkillsList({name, skills, openModal}): Node {
+type Props = {
+  name: string,
+  skills: any[],
+  openModal: OpenModalFn,
+}
+
+function SkillsList({name, skills, openModal}: Props): Node {
   return (
     <div className="skills" onClick={openModal}>
       <h2>{name}</h2>

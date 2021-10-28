@@ -15,7 +15,12 @@ const gqlMutation = graphql`
   }
 `;
 
-function AddNewSkill({areaId, closeModal}): Node {
+type Props = {
+  areaId: number,
+  closeModal: () => void,
+}
+
+function AddNewSkill({areaId, closeModal}: Props): Node {
   const [skill, setSkill] = useState('');
   const [commit, isInFlight] = useMutation(gqlMutation);
 
