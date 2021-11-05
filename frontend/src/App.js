@@ -1,14 +1,14 @@
 // @flow strict
 
-import type {Node} from 'react';
-import {useState} from 'react';
-import './App.css';
-import AddNewSkill from './components/AddNewSkill';
-import BackEndSkillsList from './components/BackEndSkillsList';
-import FrontEndSkillsList from './components/FrontEndSkillsList';
-import Modal from './components/Modal';
+import type { Node } from "react";
+import { useState } from "react";
+import "./App.css";
+import AddNewSkill from "./components/AddNewSkill";
+import BackEndSkillsList from "./components/BackEndSkillsList";
+import FrontEndSkillsList from "./components/FrontEndSkillsList";
+import Modal from "./components/Modal";
 
-export type OpenModalFn = (areaId: number, title: string) => void
+export type OpenModalFn = (areaId: number, title: string) => void;
 // CloseModal is too simple to warrant a type
 
 function App(): Node {
@@ -35,7 +35,7 @@ function App(): Node {
         <BackEndSkillsList openModal={openModal} />
       </div>
 
-      {(modalIsVisible && modalTitle && modalAreaId) && (
+      {modalIsVisible && modalTitle && modalAreaId && (
         <Modal title={`Add to ${modalTitle}`} closeModal={closeModal}>
           <AddNewSkill areaId={modalAreaId} closeModal={closeModal} />
         </Modal>

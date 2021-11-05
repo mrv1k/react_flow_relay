@@ -1,9 +1,11 @@
 // @flow
 
-import graphql from 'babel-plugin-relay/macro';
-import type {Node} from 'react';
-import {useState} from 'react';
-import {useMutation} from 'react-relay/hooks';
+import graphql from "babel-plugin-relay/macro";
+import type { Node } from "react";
+import { useState } from "react";
+import { useMutation } from "react-relay/hooks";
+import type { AddNewSkillMutation } from "./__generated__/AddNewSkillMutation.graphql.js";
+// import AddNewSkillMutation from "./__generated__/AddNewSkillMutation.graphql";
 
 const gqlMutation = graphql`
   mutation AddNewSkillMutation($skillName: String!, $areaId: ID!) {
@@ -18,14 +20,14 @@ const gqlMutation = graphql`
 type Props = {
   areaId: number,
   closeModal: () => void,
-}
+};
 
-function AddNewSkill({areaId, closeModal}: Props): Node {
-  const [skill, setSkill] = useState('');
-  const [commit, isInFlight] = useMutation(gqlMutation);
+function AddNewSkill({ areaId, closeModal }: Props): Node {
+  const [skill, setSkill] = useState("");
+  const [commit, isInFlight] = useMutation<AddNewSkillMutation>(gqlMutation);
 
-  const submit = e => {
-    console.log('fired');
+  const submit = (e) => {
+    console.log("fired");
     e.preventDefault();
 
     commit({
@@ -36,8 +38,8 @@ function AddNewSkill({areaId, closeModal}: Props): Node {
       onCompleted(data) {
         // FIX: isInFlight flicker
         // TODO: update list
-        console.log('committed', data);
-        setSkill('');
+        console.log("committed", data);
+        setSkill("");
         // closeModal();
       },
     });
@@ -52,10 +54,14 @@ function AddNewSkill({areaId, closeModal}: Props): Node {
       <input
         placeholder="Skill"
         value={skill}
-        onChange={e => setSkill(e.target.value)}
+        onChange={(e) => setSkill(e.target.value)}
       />
-      <button type="button" className="cancel" onClick={closeModal}>Cancel</button>
-      <button type="button" className="add" onClick={submit}>Add</button>
+      <button type="button" className="cancel" onClick={closeModal}>
+        Cancel
+      </button>
+      <button type="button" className="add" onClick={submit}>
+        Add
+      </button>
     </form>
   );
 }

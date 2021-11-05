@@ -1,10 +1,11 @@
 # Instructions
 
 The goal of this exercise is to implement a simple application using the following technology stack:
- - React
- - React hooks
- - Flow
- - Relay
+
+- React
+- React hooks
+- Flow
+- Relay
 
 ## TODO:
 
