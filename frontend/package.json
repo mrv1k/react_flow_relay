@@ -16,13 +16,13 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.15.8",
     "babel-plugin-relay": "^12.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-flowtype": "^7.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-relay": "^1.8.2",
+    "flow-typed": "^3.4.0",
     "graphql": "^15.7.2",
     "prettier": "2.4.1",
     "relay-compiler": "^12.0.0"
@@ -48,6 +48,19 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:relay/recommended",
+      "plugin:flowtype/recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "relay",
+      "flowtype"
     ]
   }
 }
